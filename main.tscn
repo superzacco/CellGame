@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cvmq5w7klssam"]
+
+[ext_resource type="Script" uid="uid://cxnbo83i87hfy" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bxui1vjaoyi3w" path="res://camera.gd" id="2_0xm2m"]
+
+[node name="Main" type="Node2D" unique_id=640810619]
+script = ExtResource("1_ig7tw")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=330641696]
+script = ExtResource("2_0xm2m")
+speed = 5.0
