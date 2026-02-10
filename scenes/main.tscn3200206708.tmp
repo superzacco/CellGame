@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cvmq5w7klssam"]
+
+[ext_resource type="Script" uid="uid://cxnbo83i87hfy" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://bxui1vjaoyi3w" path="res://entities/player/camera.gd" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://y2c4bbc286wb" path="res://entities/ui/UI.tscn" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://b0mriodae5mpk" path="res://entities/cell/cell.png" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://c3sc0ic6jbsy2" path="res://scenes/interaction.gd" id="5_tbgi4"]
+
+[node name="Main" type="Node2D" unique_id=640810619]
+script = ExtResource("1_sugp2")
+grid_cell_size = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2051677970]
+modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
+scale = Vector2(8.97, 8.97)
+texture = ExtResource("3_tbgi4")
+
+[node name="Cells" type="Node2D" parent="." unique_id=912723545]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=330641696]
+script = ExtResource("2_jyhfs")
+speed = 5.0
+
+[node name="UI" parent="Camera2D" unique_id=975411781 instance=ExtResource("3_jyhfs")]
+
+[node name="Interaction" type="Node2D" parent="Camera2D" unique_id=587340426]
+script = ExtResource("5_tbgi4")

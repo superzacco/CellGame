@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://y2c4bbc286wb"]
+
+[ext_resource type="PackedScene" uid="uid://bgoangmeos42w" path="res://entities/ui/context_menu.tscn" id="1_fs5w2"]
+[ext_resource type="PackedScene" uid="uid://u58w01hbjxi4" path="res://entities/ui/debug_menu.tscn" id="2_any7f"]
+
+[node name="UI" type="Control" unique_id=975411781]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContextMenu" parent="." unique_id=979877379 instance=ExtResource("1_fs5w2")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 240.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DebugMenu" parent="." unique_id=667879775 instance=ExtResource("2_any7f")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 650.0
+offset_bottom = 450.0
+grow_horizontal = 1
+grow_vertical = 1

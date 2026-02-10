@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://u58w01hbjxi4"]
+
+[ext_resource type="Script" uid="uid://dkgykdd1ciaxx" path="res://entities/ui/debug_menu.gd" id="1_w42eo"]
+
+[node name="DebugMenu" type="Panel" unique_id=667879775]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -225.0
+offset_right = 325.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(768, 213)
+script = ExtResource("1_w42eo")
