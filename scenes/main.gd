@@ -3,66 +3,104 @@ class_name Main
 
 @export var amtOfCells: int
 
-@export var grid_cell_size: int
-var grid: Dictionary = {}
-
-var cellsAlive: Array[Cell]
-
 
 func _ready() -> void:
 	GameManager.main = self
 	
 	for i in amtOfCells:
-		spawn_cell()
+		spawn_starting_cell()
+	
+	var t := Timer.new()
+	self.add_child(t)
+	
+	t.timeout.connect(tick)
+	t.one_shot = false
+	t.start(0.1)
 
 
 func _physics_process(delta: float) -> void:
 	update_grid()
 
 
-
-
-
-func spawn_cell():
-	var randSize = randf_range(0.1, 0.25)
-	var randColor = Color(randf_range(0.0, 1.0), randf_range(0.0, 1.0), randf_range(0.0, 1.0))
-	var x = randf_range(-5000.0, 5000.0)
-	var y = randf_range(-5000.0, 5000.0)
+func tick():
+	for cell in cellsAlive:
+		cell.currentCellData.update_state()
 	
-	var cellData := CellData.new(randSize, randColor)
+	if randi_range(0, 100) > 92:
+		spawn_food()
+
+
+func spawn_food():
+	var f = Food.new(randi_range(10,30))
+	self.add_child(f)
 	
-	var cell := Cell.new(cellData, self)
-	$Cells.add_child(cell)
+	var x := randf_range(-1500.0, 1500.0)
+	var y := randf_range(-1500.0, 1500.0)
+	
+	f.z_index = 15
+	f.global_position += Vector2(x, y)
+	
+	activeFood.append(f)
+
+
+
+
+var basic_cell := preload("res://resouces/basic_cell.tres")
+
+func spawn_starting_cell():
+	var cell := Cell.new(basic_cell)
+	add_cell(cell)
+	
+	var x := randf_range(-1500.0, 1500.0)
+	var y := randf_range(-1500.0, 1500.0)
 	
 	cell.global_position += Vector2(x, y)
-	cellsAlive.append(cell)
+
+
+func add_cell(c: Cell):
+	$Cells.add_child(c)
+	cellsAlive.append(c)
 
 
 #region // GRID
-func update_grid(): # all this does is put cells into grid pos (no checking) 
+enum EntityType { CELL , FOOD }
+
+@export var grid_cell_size: int
+var grid: Dictionary = {}
+
+var cellsAlive: Array[Cell]
+var activeFood: Array[Food]
+
+func update_grid():
 	grid.clear()
 	
-	for cell in cellsAlive:
-		var gridPos = _get_grid_position(cell.global_position)
+	_add_nearby_entities_to_grid(cellsAlive, EntityType.CELL)
+	_add_nearby_entities_to_grid(activeFood, EntityType.FOOD)
+	
+	for gridPos in grid.keys():
+		Debug.spawn_debug_square(gridPos * grid_cell_size)
+
+
+func _add_nearby_entities_to_grid(entities: Array, type: EntityType) -> void:
+	for entity in entities:
+		var gridPos = _get_grid_position(entity.global_position)
 		
 		if !grid.has(gridPos):
-			grid[gridPos] = []
+			grid[gridPos] =  { EntityType.CELL: [], EntityType.FOOD: [] }
 		
-		grid[gridPos].append(cell)
-		#Debug.spawn_debug_square(gridPos * grid_cell_size)
+		grid[gridPos][type].append(entity)
 
-func get_nearby_cells(pos: Vector2):
-	var centerGridPos = _get_grid_position(pos)
-	var nearbyCells = []
+func get_nearby_entities(pos: Vector2, type: EntityType) -> Array:
+	var center = _get_grid_position(pos)
+	var result = []
 	
 	for x in range(-1, 2):
 		for y in range(-1, 2):
-			var key = centerGridPos + Vector2i(x, y)
-			
+			var key = center + Vector2i(x, y)
 			if grid.has(key):
-				nearbyCells.append_array(grid.get(key))
+				result.append_array(grid[key][type])
 	
-	return nearbyCells
+	return result
 
 func _get_grid_position(position: Vector2) -> Vector2i:
 	return Vector2i(

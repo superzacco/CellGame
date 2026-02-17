@@ -23,7 +23,8 @@ Debug="*uid://cy4a25pokas78"
 [file_customization]
 
 folder_colors={
-"res://entities/": "pink"
+"res://entities/": "pink",
+"res://resouces/": "red"
 }
 
 [input]

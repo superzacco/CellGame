@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CellData" format=3 uid="uid://cmx83ltkulkme"]
+
+[ext_resource type="Texture2D" uid="uid://b0mriodae5mpk" path="res://entities/cell/cell.png" id="1_f144r"]
+[ext_resource type="Script" uid="uid://hi8l7jfly07" path="res://entities/cell/cell_data.gd" id="2_u5rxb"]
+
+[resource]
+script = ExtResource("2_u5rxb")
+cellTexture = ExtResource("1_f144r")
+cellSize = 1.0
+cellColor = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://hi8l7jfly07"

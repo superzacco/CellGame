@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w42eo"]
 bg_color = Color(0, 0, 0, 0.75686276)
 
-[node name="ContextMenu" type="Panel" unique_id=979877379]
+[node name="ContextMenu" type="Panel" unique_id=979877379 node_paths=PackedStringArray("size_text", "speed_text", "color_text", "hunger_text", "current_state", "generation")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -19,6 +19,45 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w42eo")
 script = ExtResource("1_t3jan")
+size_text = NodePath("MarginContainer/VBoxContainer/SizeText")
+speed_text = NodePath("MarginContainer/VBoxContainer/SpeedText")
+color_text = NodePath("MarginContainer/VBoxContainer/ColorText")
+hunger_text = NodePath("MarginContainer/VBoxContainer/HungerText")
+current_state = NodePath("MarginContainer/VBoxContainer/CurrentState")
+generation = NodePath("MarginContainer/VBoxContainer/Generation")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1470125679]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1863497219]
+layout_mode = 2
+
+[node name="SizeText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=698504733]
+layout_mode = 2
+
+[node name="SpeedText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1269478862]
+layout_mode = 2
+
+[node name="ColorText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1352968619]
+layout_mode = 2
+
+[node name="HungerText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1447305632]
+layout_mode = 2
+
+[node name="CurrentState" type="Label" parent="MarginContainer/VBoxContainer" unique_id=162820884]
+layout_mode = 2
+
+[node name="Generation" type="Label" parent="MarginContainer/VBoxContainer" unique_id=186781278]
+layout_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

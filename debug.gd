@@ -7,10 +7,11 @@ func spawn_debug_square(pos: Vector2):
 		return
 	
 	var square := Sprite2D.new()
+	var gridSize = GameManager.main.grid_cell_size / 33.3
 	
 	square.texture = squareTexture
 	square.global_position = pos
-	square.scale = Vector2(6, 6)
+	square.scale = Vector2(gridSize, gridSize)
 	square.modulate = Color(1.0, 1.0, 1.0, 0.02)
 	square.z_index = 10
 	

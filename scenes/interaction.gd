@@ -12,7 +12,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_released("mouse0"):
 		var clickPos = get_global_mouse_position()
-		var cellsInChunk = GameManager.main.get_nearby_cells(clickPos)
+		var cellsInChunk = GameManager.main.get_nearby_entities(clickPos, Main.EntityType.CELL)
 		var closestCell := return_closest_cell(cellsInChunk, clickPos)
 		
 		if closestCell != null and !dragDifference.length() > 10:

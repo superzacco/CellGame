@@ -27,6 +27,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="DebugMenu" parent="." unique_id=667879775 instance=ExtResource("2_any7f")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
