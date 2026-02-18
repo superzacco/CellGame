@@ -1,11 +1,16 @@
 [gd_resource type="Resource" script_class="CellData" format=3 uid="uid://cmx83ltkulkme"]
 
 [ext_resource type="Texture2D" uid="uid://b0mriodae5mpk" path="res://entities/cell/cell.png" id="1_f144r"]
+[ext_resource type="Curve" uid="uid://h87twi7waf1t" path="res://resouces/hungerSizeCurve.tres" id="2_m4j1q"]
 [ext_resource type="Script" uid="uid://hi8l7jfly07" path="res://entities/cell/cell_data.gd" id="2_u5rxb"]
+[ext_resource type="Curve" uid="uid://c341l5lpyj8wd" path="res://resouces/speedSizeCurve.tres" id="3_u5rxb"]
 
 [resource]
 script = ExtResource("2_u5rxb")
 cellTexture = ExtResource("1_f144r")
-cellSize = 1.0
-cellColor = Color(1, 1, 1, 1)
+maxMinSpeed = Vector2(5, 0.25)
+speedSizeCurve = ExtResource("3_u5rxb")
+maxMinSize = Vector2(5, 0.25)
+hungerSizeCurve = ExtResource("2_m4j1q")
+maxMinHungerPerTick = Vector2(0.05, 0.002)
 metadata/_custom_type_script = "uid://hi8l7jfly07"

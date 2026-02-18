@@ -3,7 +3,7 @@ class_name Cell
 
 var currentCellData: CellData = null
 
-const maxDistFromCenter: float = 1600.0
+const maxDistFromCenter: float = 3200.0
 
 var avoidStr: float = 100.0
 var avoidanceRadius: float = 100.0
@@ -24,11 +24,13 @@ func _init(cellData: CellData) -> void:
 	currentCellData = cellData.duplicate(true)
 	currentCellData.changed.connect(update_cell.bind(currentCellData))
 	
+	GameManager.add_cell(self)
 	self.texture = cellData.cellTexture
 
 
 func _ready() -> void:
 	self.add_child(reproductionTimer)
+	
 	reproductionTimer.timeout.connect(make_new_cells)
 	reproductionTimer.start(randf_range(15, 30))
 
@@ -40,8 +42,8 @@ func update_cell(cellData: CellData):
 	self.modulate = cellData.cellColor
 	
 	if currentCellData.hunger > 1.0:
-		GameManager.main.cellsAlive.erase(self)
-		queue_free()
+		kill_cell()
+		
 	elif currentCellData.hunger > 0.2:
 		currentState = States.EAT
 	else:
@@ -49,6 +51,11 @@ func update_cell(cellData: CellData):
 	
 	closestFoodSources = GameManager.main.get_nearby_entities(global_position, Main.EntityType.FOOD)
 
+
+func kill_cell():
+	GameManager.remove_cell(self)
+	queue_free.call_deferred()
+	
 
 
 var velocity: Vector2
@@ -92,7 +99,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	self.global_position += velocity
 
-
 func make_new_cells():
 	if currentCellData.hunger > 0.2:
 		return
@@ -102,7 +108,6 @@ func make_new_cells():
 		cellData.mutate_cell()
 		
 		var newCell := Cell.new(cellData)
-		GameManager.main.add_cell(newCell)
 		
 		newCell.global_position = self.global_position + Vector2(randf_range(-5, 5), randf_range(-5, 5))
 

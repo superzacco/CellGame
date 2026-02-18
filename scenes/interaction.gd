@@ -24,6 +24,9 @@ func return_closest_cell(array: Array, pos: Vector2) -> Cell:
 	var closestCell = null
 	
 	for cell: Cell in array:
+		if cell == null:
+			continue
+		
 		var dist = cell.global_position.distance_to(pos)
 		if dist < closestDist:
 			closestDist = dist

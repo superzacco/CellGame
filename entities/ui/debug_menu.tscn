@@ -1,18 +1,152 @@
 [gd_scene format=3 uid="uid://u58w01hbjxi4"]
 
 [ext_resource type="Script" uid="uid://dkgykdd1ciaxx" path="res://entities/ui/debug_menu.gd" id="1_w42eo"]
+[ext_resource type="Script" uid="uid://chg77wmq1oe7r" path="res://entities/ui/graphs.gd" id="2_pglmo"]
 
-[node name="DebugMenu" type="Panel" unique_id=667879775]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w42eo"]
+bg_color = Color(0.13335153, 0.13335153, 0.13335153, 0.551)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pglmo"]
+bg_color = Color(0.13335153, 0.13335153, 0.13335153, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w42eo"]
+
+[node name="DebugMenu" type="TabContainer" unique_id=1504049365 node_paths=PackedStringArray("population")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -325.0
-offset_top = -225.0
-offset_right = 325.0
-offset_bottom = 225.0
+offset_left = -499.625
+offset_top = -274.5
+offset_right = 499.625
+offset_bottom = 274.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(768, 213)
+theme_override_styles/panel = SubResource("StyleBoxFlat_w42eo")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_pglmo")
+current_tab = 0
 script = ExtResource("1_w42eo")
+population = NodePath("EvolutionGraphs/VBoxContainer/Population")
+
+[node name="EvolutionGraphs" type="Panel" parent="." unique_id=412852719]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w42eo")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EvolutionGraphs" unique_id=1433858602]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopTitle" type="Label" parent="EvolutionGraphs/VBoxContainer" unique_id=478420894]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "POPULATION:"
+
+[node name="Population" type="Label" parent="EvolutionGraphs/VBoxContainer" unique_id=133553797]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="Graphs" type="MarginContainer" parent="EvolutionGraphs/VBoxContainer" unique_id=1563357065 node_paths=PackedStringArray("tl", "tr", "br", "bl", "max", "min")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("2_pglmo")
+tl = NodePath("HBoxContainer/Panel/TL")
+tr = NodePath("HBoxContainer/Panel/TR")
+br = NodePath("HBoxContainer/Panel/BR")
+bl = NodePath("HBoxContainer/Panel/BL")
+max = NodePath("HBoxContainer/ValContainer/Max")
+min = NodePath("HBoxContainer/ValContainer/Min")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EvolutionGraphs/VBoxContainer/Graphs" unique_id=1511950092]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="ValContainer" type="VBoxContainer" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer" unique_id=1728878059]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Max" type="Label" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/ValContainer" unique_id=2047344390]
+layout_mode = 2
+size_flags_vertical = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="Min" type="Label" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/ValContainer" unique_id=1508056544]
+layout_mode = 2
+size_flags_vertical = 10
+text = "0"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer" unique_id=1575306954]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="TL" type="Control" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/Panel" unique_id=221573274]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="BL" type="Control" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/Panel" unique_id=109331406]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 424.0
+offset_bottom = 424.0
+grow_vertical = 0
+
+[node name="BR" type="Control" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/Panel" unique_id=1315446978]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 959.0
+offset_top = 424.0
+offset_right = 959.0
+offset_bottom = 424.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TR" type="Control" parent="EvolutionGraphs/VBoxContainer/Graphs/HBoxContainer/Panel" unique_id=1023498324]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 959.0
+offset_right = 959.0
+grow_horizontal = 0
+
+[node name="Redraw" type="Timer" parent="EvolutionGraphs/VBoxContainer/Graphs" unique_id=575104425]
+wait_time = 2.0
+autostart = true
+
+[node name="J" type="Panel" parent="." unique_id=1349659974]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1718753066]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="EvolutionGraphs/VBoxContainer/Graphs/Redraw" to="EvolutionGraphs/VBoxContainer/Graphs" method="_on_redraw_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

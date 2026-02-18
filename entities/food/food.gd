@@ -1,9 +1,9 @@
 extends Sprite2D
 class_name Food
 
-const maxDistFromCenter: float = 1600.0
-const avoidStr: float = 0.2
-const avoidanceRadius: float = 150.0
+const maxDistFromCenter: float = 3200.0
+const avoidStr: float = 0.25
+const avoidanceRadius: float = 50.0
 
 var amtOfFood: int = 0
 
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	avoidanceDir = Vector2.ZERO
 	pushCenter = Vector2.ZERO
 	
-	velocity *= 0.98
+	velocity *= 0.95
 	
 	calc_push_toward_center()
 	calc_avoid_neighbors()

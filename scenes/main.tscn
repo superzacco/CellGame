@@ -8,12 +8,12 @@
 
 [node name="Main" type="Node2D" unique_id=640810619]
 script = ExtResource("1_sugp2")
-amtOfCells = 25
-grid_cell_size = 300
+amtOfCells = 50
+grid_cell_size = 400
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2051677970]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
-scale = Vector2(32, 32)
+scale = Vector2(64, 64)
 texture = ExtResource("3_tbgi4")
 
 [node name="Cells" type="Node2D" parent="." unique_id=912723545]

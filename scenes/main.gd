@@ -10,6 +10,9 @@ func _ready() -> void:
 	for i in amtOfCells:
 		spawn_starting_cell()
 	
+	for i in 10:
+		spawn_food()
+	
 	var t := Timer.new()
 	self.add_child(t)
 	
@@ -26,7 +29,7 @@ func tick():
 	for cell in cellsAlive:
 		cell.currentCellData.update_state()
 	
-	if randi_range(0, 100) > 92:
+	if randi_range(0, 100) > 90:
 		spawn_food()
 
 
@@ -34,8 +37,8 @@ func spawn_food():
 	var f = Food.new(randi_range(10,30))
 	self.add_child(f)
 	
-	var x := randf_range(-1500.0, 1500.0)
-	var y := randf_range(-1500.0, 1500.0)
+	var x := randf_range(-3000.0, 3000.0)
+	var y := randf_range(-3000.0, 3000.0)
 	
 	f.z_index = 15
 	f.global_position += Vector2(x, y)
@@ -49,10 +52,9 @@ var basic_cell := preload("res://resouces/basic_cell.tres")
 
 func spawn_starting_cell():
 	var cell := Cell.new(basic_cell)
-	add_cell(cell)
 	
-	var x := randf_range(-1500.0, 1500.0)
-	var y := randf_range(-1500.0, 1500.0)
+	var x := randf_range(-3000.0, 3000.0)
+	var y := randf_range(-3000.0, 3000.0)
 	
 	cell.global_position += Vector2(x, y)
 
@@ -60,6 +62,9 @@ func spawn_starting_cell():
 func add_cell(c: Cell):
 	$Cells.add_child(c)
 	cellsAlive.append(c)
+
+func remove_cell(c: Cell):
+	cellsAlive.erase(c)
 
 
 #region // GRID
@@ -77,8 +82,8 @@ func update_grid():
 	_add_nearby_entities_to_grid(cellsAlive, EntityType.CELL)
 	_add_nearby_entities_to_grid(activeFood, EntityType.FOOD)
 	
-	for gridPos in grid.keys():
-		Debug.spawn_debug_square(gridPos * grid_cell_size)
+	#for gridPos in grid.keys():
+		#Debug.spawn_debug_square(gridPos * grid_cell_size)
 
 
 func _add_nearby_entities_to_grid(entities: Array, type: EntityType) -> void:

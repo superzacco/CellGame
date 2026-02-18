@@ -10,6 +10,8 @@ var canDrag: bool = true
 func _ready() -> void:
 	SignalBus.enable_view_drag.connect(enable_drag)
 	SignalBus.disable_view_drag.connect(disable_drag)
+	
+	SignalBus.set_cam_pos.connect(set_cam_pos)
 
 
 func _process(delta: float) -> void:
@@ -33,6 +35,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if clicking and canDrag:
 			self.global_position -= event.relative / zoom
+
+
+func set_cam_pos(pos: Vector2):
+	self.global_position = pos
 
 
 func disable_drag():
