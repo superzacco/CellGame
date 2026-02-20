@@ -82,8 +82,8 @@ func update_grid():
 	_add_nearby_entities_to_grid(cellsAlive, EntityType.CELL)
 	_add_nearby_entities_to_grid(activeFood, EntityType.FOOD)
 	
-	#for gridPos in grid.keys():
-		#Debug.spawn_debug_square(gridPos * grid_cell_size)
+	for gridPos in grid.keys():
+		Debug.spawn_debug_square(gridPos * grid_cell_size)
 
 
 func _add_nearby_entities_to_grid(entities: Array, type: EntityType) -> void:

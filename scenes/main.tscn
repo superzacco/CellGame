@@ -9,7 +9,7 @@
 [node name="Main" type="Node2D" unique_id=640810619]
 script = ExtResource("1_sugp2")
 amtOfCells = 50
-grid_cell_size = 400
+grid_cell_size = 600
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2051677970]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)

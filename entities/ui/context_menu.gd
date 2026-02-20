@@ -11,6 +11,7 @@ var followingCell := false
 @export var hunger_text: Label
 @export var current_state: Label
 @export var generation: Label
+@export var age: Label
 
 
 func _input(event: InputEvent) -> void:
@@ -38,6 +39,7 @@ func show_context_menu(cell: Cell):
 	hunger_text.text = "Hunger: %s / PT: %s" % [snapped(cData.hunger, 0.01), snapped(cData.hungerPerTick, 0.00001)]
 	current_state.text = "State: %s" % cell.States.find_key(cell.currentState)
 	generation.text = "Generation: %s" % cData.generation
+	age.text = "Age: %s" % cData.age
 	
 
 

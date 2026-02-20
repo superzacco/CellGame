@@ -41,7 +41,7 @@ func update_cell(cellData: CellData):
 	self.scale = size * 0.1
 	self.modulate = cellData.cellColor
 	
-	if currentCellData.hunger > 1.0:
+	if currentCellData.hunger > 1.0 or currentCellData.age > 1.0:
 		kill_cell()
 		
 	elif currentCellData.hunger > 0.2:

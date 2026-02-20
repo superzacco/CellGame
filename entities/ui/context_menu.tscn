@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w42eo"]
 bg_color = Color(0, 0, 0, 0.75686276)
 
-[node name="ContextMenu" type="Panel" unique_id=979877379 node_paths=PackedStringArray("size_text", "speed_text", "color_text", "hunger_text", "current_state", "generation")]
+[node name="ContextMenu" type="Panel" unique_id=979877379 node_paths=PackedStringArray("size_text", "speed_text", "color_text", "hunger_text", "current_state", "generation", "age")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,6 +26,7 @@ color_text = NodePath("MarginContainer/VBoxContainer/ColorText")
 hunger_text = NodePath("MarginContainer/VBoxContainer/Hunger-PerTurn")
 current_state = NodePath("MarginContainer/VBoxContainer/CurrentState")
 generation = NodePath("MarginContainer/VBoxContainer/Generation")
+age = NodePath("MarginContainer/VBoxContainer/Age")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1470125679]
 layout_mode = 1
@@ -52,6 +53,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Hunger-PerTurn" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1447305632]
+layout_mode = 2
+
+[node name="Age" type="Label" parent="MarginContainer/VBoxContainer" unique_id=439511967]
 layout_mode = 2
 
 [node name="CurrentState" type="Label" parent="MarginContainer/VBoxContainer" unique_id=162820884]
